@@ -1,24 +1,24 @@
-import logo from './logo.svg';
-import './App.css';
+import React, { useContext, useEffect } from 'react';
+import { ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
+
+import Auth from './components/Auth/Auth';
+import Router from './Router';
+import { UserContext } from './context/UserContext';
+
+import './styles/index.css';
+import 'emoji-mart/css/emoji-mart.css'
 
 function App() {
+
+  const { user } = useContext(UserContext);
+
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <>
+      <ToastContainer autoClose={2000} closeButton={false} />
+      {user ? <Router /> : <Auth />}
+    </>
   );
 }
 
